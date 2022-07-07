@@ -1,3 +1,4 @@
+//mock job database object, note each time object is just current time for simplicity
 let jobs = [{
     id:998421,
     status:'active',
@@ -57,6 +58,8 @@ let jobs = [{
     ]
 
 },];
+
+//mock endpoint to get all the jobs
 export const getAllJobs = (events) => {
     return new Promise((resolve, reject) => {
         return resolve({
@@ -66,7 +69,7 @@ export const getAllJobs = (events) => {
         });
     });
 };
-
+//mock endpoint to add notes to jobs collection
 export const AddNoteToJob= (note,jobId)=>{
     let selectedJob = jobs.find((job)=>jobId===job.id);
     console.log('selectedJob',selectedJob)
@@ -79,6 +82,8 @@ export const AddNoteToJob= (note,jobId)=>{
         });
     });
 }
+
+//mock endpoint to update a given jobs status in the collection
 export const updateJobStatus= (status,jobId)=>{
     let selectedJob = jobs.find((job)=>jobId===job.id);
     console.log('selectedJob',selectedJob)

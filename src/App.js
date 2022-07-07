@@ -11,13 +11,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        //loading state not used as ran out of time
       backendDataIsLoading: false,
       jobs: null,
       selectedFilter:'all',
 
     }
   }
-
+//fetch initial jobs
   componentDidMount() {
     this.setState({backendDataIsLoading: true})
     getAllJobs().then((response) => {
@@ -25,7 +26,7 @@ class App extends React.Component {
       this.setState({jobs:response.data,backendDataIsLoading:false});
     });
   }
-
+//add a note to a job and refresh the job list to propogate changes
   addNoteToJobAndRefresh(input,jobId){
       console.log('i',input,jobId)
       AddNoteToJob(input,jobId).then(()=>{
@@ -35,6 +36,7 @@ class App extends React.Component {
 
       })
   }
+//change the status of a job depending on the directional arrow clicked and current status of job
     updateStatusAndRefresh(status,direction){
       let selectedJobId=this.state.selectedJob.id;
       let newStatus = calculateNewStatus(status,direction);
@@ -45,6 +47,8 @@ class App extends React.Component {
 
       })
   }
+
+//select job filter
     selectFilterAndRefreshJobList(filter){
       console.log('filter:',filter);
       this.setState({selectedFilter:filter})
